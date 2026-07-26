@@ -1,0 +1,22 @@
+{
+  "name": "ship-safely",
+  "owner": {
+    "name": "Wiri Heremaia"
+  },
+  "metadata": {
+    "description": "Production safety skills — commit freely, deploy carefully, check the source of truth first.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "ship-safely",
+      "description": "Production discipline skills for safe deploys and reliable investigation",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/commit-push-deploy",
+        "./skills/source-of-truth"
+      ]
+    }
+  ]
+}
