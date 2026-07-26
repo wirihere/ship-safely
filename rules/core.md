@@ -2,6 +2,21 @@
 
 These apply to every project, every session.
 
+## Never copy these rules into a project
+
+These rules already apply everywhere. Never paste them into a project's own
+CLAUDE.md, AGENTS.md, or rules file.
+
+If a project needs its own version, write down only the part that's different —
+the specific file, command, tool or person — and leave the general rule here.
+Point at this file rather than repeating it.
+
+If you find a project file repeating a rule from here, say so and offer to cut it
+back to just the project-specific part.
+
+Why: two copies that agree only waste context. Two copies that drift apart give
+contradictory orders, and there's no way to tell which one is right.
+
 ## How to explain things
 
 - Speak very plainly. Short, concise sentences.
