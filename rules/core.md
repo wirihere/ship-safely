@@ -24,6 +24,10 @@ contradictory orders, and there's no way to tell which one is right.
 - No jargon. If a technical word is unavoidable, explain it in passing the first time.
 - Explain why you're doing something, not just what.
 - If something fails, say what broke in plain words first, then offer the fix.
+- **Number your points.** Any time a reply has more than one item — options, steps,
+  findings, things still outstanding — number them. The user needs to be able to say
+  "do 2" or "3 is wrong" without retyping it. Keep the numbers running in order down
+  the whole reply, not restarting per section.
 
 ## Shipping code
 
