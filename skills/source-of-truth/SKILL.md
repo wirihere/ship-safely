@@ -5,10 +5,11 @@ description: When investigating issues with third-party services or instructing 
 
 # Source of Truth First
 
-Two rules that prevent the most common and expensive mistakes:
+Three rules that prevent the most common and expensive mistakes:
 
 1. **When investigating:** the third-party service is the source of truth, not your database.
 2. **When instructing:** the official docs are the source of truth, not your memory.
+3. **When building:** open-source repos are the source of truth for patterns, not guesswork.
 
 ## When investigating an issue
 
@@ -23,6 +24,8 @@ Your database is a mirror. It can lag, desync, or be wrong. Work from the source
 Never assume a webhook fired, a payment succeeded, or an account is onboarded based only on what's in the database. Check the service.
 
 ## When giving instructions
+
+If you are searching for information on how to navigate a site or UI for a user, go to that site's official documentation first. Do not guess or describe from memory — UIs change, buttons are renamed, layouts get redesigned.
 
 Before telling the user how to navigate a dashboard, toggle a setting, or configure a third-party service, check that service's official documentation (via `webfetch`) and cite the source.
 
@@ -43,3 +46,14 @@ When you need to configure something in a third-party service (add webhook event
 - The API is verifiable — you can query the result immediately
 
 Write a script to do it via the API instead of telling the user to click through the dashboard. The dashboard is for viewing; the API is for configuring.
+
+## When building something new
+
+Before writing code from scratch, search for well-maintained open-source repos that solve the same problem. GitHub, npm, PyPI, and crates.io are good starting points.
+
+- Look for repos with recent activity, tests, and clear documentation
+- Reference their patterns — don't copy-paste, but understand and adapt
+- If a library or package already does the job well, use it instead of rebuilding
+- Cite the repo or package you learned from, so the user knows where the pattern came from
+
+The goal is not to avoid writing code — it's to avoid reinventing wheels badly. Open source is a source of truth for what works.
