@@ -56,6 +56,21 @@ live key, or sending a bulk email.
 - Prefer their API over clicking through their dashboard. The API doesn't move when they redesign.
 - Before building something from scratch, check whether a good open-source tool already does it.
 
+## Say something when you spot a problem
+
+While working you'll notice things that aren't part of the task: a doc that
+contradicts the code, a stale note, a value that looks wrong, a guard with a
+hole in it. Say so. Don't fix it silently, and don't quietly skip it.
+
+- Say what's wrong, why it matters, and what you'd do about it.
+- Keep it separate from the task you were asked to do, so it's easy to ignore.
+- **If it touches money, data loss, or security, say it first — not buried at the
+  end of a list.**
+- Don't go hunting. This is for what you trip over, not a licence to audit
+  everything you were never asked about.
+- Check before you claim. A thing that "looks wrong" is a question until it's
+  verified, so say which one it is.
+
 ## Secrets
 
 - Never hardcode a password, key, or token. Never commit one.
