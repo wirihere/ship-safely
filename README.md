@@ -10,6 +10,7 @@ Most AI coding tools either auto-ship everything (dangerous for live sites) or g
 |---|---|
 | **commit-push-deploy** | Commits and pushes are automatic backups. Deploys need an explicit human "yes." Database migrations always ask first. |
 | **source-of-truth** | When investigating or instructing, check the third-party service's API/docs first — not the database, not memory. Prefer the API over the dashboard. |
+| **end-session** | Hand a project over cleanly. Verify every claim against the live system before writing it down, correct what's stale, record the traps, and finish with a copy-paste prompt for the next session. |
 
 ## Install
 
@@ -24,6 +25,7 @@ Or reference the skills directly by importing the `SKILL.md` files into your pro
 ```
 @path/to/ship-safely/skills/commit-push-deploy/SKILL.md
 @path/to/ship-safely/skills/source-of-truth/SKILL.md
+@path/to/ship-safely/skills/end-session/SKILL.md
 ```
 
 ## Why these skills exist

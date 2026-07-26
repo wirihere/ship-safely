@@ -71,6 +71,27 @@ hole in it. Say so. Don't fix it silently, and don't quietly skip it.
 - Check before you claim. A thing that "looks wrong" is a question until it's
   verified, so say which one it is.
 
+## Ending a session
+
+When I say **"end a session"** (or wrap up / hand this over / I'm stopping here),
+follow `skills/end-session/SKILL.md` in this repo. In short:
+
+- **Verify before you write.** Check every claim against the live system — the
+  service's API, the production database, real DNS — not your memory and not the
+  repo. By the end of a long session your memory of the system is unreliable.
+- **Correct what's already written down**, and say in the commit message that it
+  was wrong. A stale-but-plausible note is worse than no note: the next session
+  has no reason to doubt it.
+- Update the project's own state file **in place**. Don't append a dated section
+  per session.
+- Write down the **traps** — credentials with odd scopes, environments that
+  differ, things that cost you time to find out. Most valuable, most often
+  skipped.
+- Say what was deliberately **not** done, and why, so it doesn't get "fixed".
+- Commit and push.
+- **Finish by giving me a copy-paste prompt for the next session**, which tells
+  it to verify the docs against the live system before trusting them.
+
 ## Secrets
 
 - Never hardcode a password, key, or token. Never commit one.
