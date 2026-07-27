@@ -124,12 +124,15 @@ follow `skills/end-session/SKILL.md` in this repo. In short:
   differ, things that cost you time to find out. Most valuable, most often
   skipped.
 - Say what was deliberately **not** done, and why, so it doesn't get "fixed".
-- Commit and push.
-- **Finish by writing the next session's instructions into the state file
-  itself** — a single "Start here" block at the top, replacing the one the last
-  session wrote. Never two, and nothing for me to copy and paste: the state
-  file is loaded automatically, so it should already say what to do next and
-  tell that session to verify it against the live system before trusting it.
+- **Write the next session's instructions into the state file itself** — a
+  single "Start here" block near the top, replacing the one the last session
+  wrote. Never two, and nothing for me to copy and paste: the state file loads
+  automatically, so it should already say what to do next and tell that session
+  to verify it against the live system first. It must carry the exact
+  `NEXT-SESSION` markers — SKILL.md has them; don't write a block without them,
+  or the session after can't find it to replace.
+- **Then commit and push** — the block included, so the one thing the next
+  session depends on is never left sitting uncommitted.
 
 ## Secrets
 

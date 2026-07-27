@@ -95,6 +95,72 @@ Two rules on what goes in:
 The same applies in reverse: if a step here turns out to be wrong, misleading,
 or no longer worth doing, change or remove it and say so.
 
+## Write the next session's instructions into the state file
+
+**Do not hand the user a prompt to copy and paste.** The state file is loaded
+automatically when someone opens the project, so the instructions for the next
+session belong *in it*. Anything that needs copying gets forgotten, pasted
+stale, or pasted twice.
+
+Put a single **"Start here"** block directly under the project's title and
+one-line description, above every other section — the first thing after the
+reader knows what the project is. If a block already exists somewhere else in
+the file, move it; never add a second.
+
+**Replace it wholesale every session. Never append, never leave two.** Delete
+the block the previous session wrote and put yours in its place — the whole
+point is that exactly one set of instructions exists and it is always the
+current one. Wrap it in markers so the next session can find and replace it
+without guessing:
+
+```
+<!-- NEXT-SESSION:START -->
+## ▶ Start here — written <date>, end of session
+...
+<!-- NEXT-SESSION:END -->
+```
+
+**The markers are exact, bare and on their own lines** — no prose inside the
+tags, nothing else on the line. Find an existing block by searching for the
+substring `NEXT-SESSION:START`, never for the whole comment: a marker with a
+note baked into it, or wrapped onto two lines, will not match and you will
+append a second block instead of replacing the first.
+
+**Before writing, deal with what is already there:**
+
+- **No markers, but a "Start here" / "Next session" section exists** — delete
+  that section and write a marked block in its place. Say so in the commit.
+- **A START with no END, or markers that don't match** — delete from the START
+  marker to the next `---` or top-level heading, then write a clean block.
+- **More than one block** — keep none of them. Write one fresh, and say in the
+  commit message that duplicates were removed.
+- **No state file at all** — create one at the repo root (`CLAUDE.md` unless the
+  project uses something else) and put the block in it.
+- **A state file that isn't Markdown** — use that file's own comment syntax, or
+  a plain `=== START HERE ===` / `=== END START HERE ===` pair. The visible
+  heading is the only boundary a human sees in a rendered view, so keep it.
+
+The block contains:
+
+1. **What to read, in order** — the last session's write-up, anything mandatory
+   before touching risky areas, then the state section.
+2. **"Verify before you trust this."** Say when the figures were last checked
+   against the live system, and name how to check them. You have just spent a
+   session discovering that written-down claims go stale; assume yours will
+   too. Make clear that reporting a mismatch is useful work, not a detour.
+3. **The next one to three jobs, concretely and in order** — specific enough to
+   act on without this conversation, including what "it worked" looks like.
+4. **The project-specific constraints only** — who can approve a deploy here,
+   which doc is mandatory before which code, what must never be touched. Point
+   at the general rules file for the rest rather than restating it: general
+   rules are already loaded every session, and a second copy is free to drift.
+
+Keep it short enough to be read every time. Everything long goes in the dated
+session doc and gets linked from point 1.
+
+Then tell the user, in a sentence, that it is written down and they don't need
+to paste anything.
+
 ## Then commit
 
 Commit and push. The commit message is part of the handoff — say what was
@@ -109,48 +175,6 @@ If you touched more than one repo this session, check every one of them.
 
 Commit any change you made to this procedure too, and say in the message what
 prompted it.
-
-## Finally: write the next session's instructions into the state file
-
-**Do not hand the user a prompt to copy and paste.** The state file is loaded
-automatically when someone opens the project, so the instructions for the next
-session belong *in it*. Anything that needs copying gets forgotten, pasted
-stale, or pasted twice.
-
-Put a single **"Start here"** block at the very top of the state file, above
-everything else, so it is the first thing read.
-
-**Replace it wholesale every session. Never append, never leave two.** Delete
-the block the previous session wrote and put yours in its place — the whole
-point is that exactly one set of instructions exists and it is always the
-current one. Wrap it in markers so the next session can find and replace it
-without guessing:
-
-```
-<!-- NEXT-SESSION:START — replace this whole block each session, never leave two -->
-## ▶ Start here — written <date>, end of session
-...
-<!-- NEXT-SESSION:END -->
-```
-
-The block contains:
-
-1. **What to read, in order** — the last session's write-up, anything mandatory
-   before touching risky areas, then the state section.
-2. **"Verify before you trust this."** Say when the figures were last checked
-   against the live system, and name how to check them. You have just spent a
-   session discovering that written-down claims go stale; assume yours will
-   too. Make clear that reporting a mismatch is useful work, not a detour.
-3. **The next one to three jobs, concretely and in order** — specific enough to
-   act on without this conversation, including what "it worked" looks like.
-4. **The hard constraints**, repeated in full. Never assume they were read
-   elsewhere: what needs asking before it is done, and what must be read first.
-
-Keep it short enough to be read every time. Everything long goes in the dated
-session doc and gets linked from point 1.
-
-Then tell the user, in a sentence, that it is written down and they don't need
-to paste anything.
 
 ## Hard rules
 
