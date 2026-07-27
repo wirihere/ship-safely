@@ -65,6 +65,13 @@ stale fact, because it is written to be obeyed.
   conversation. Anything needing a human decision, flagged as such.
 - **What was deliberately NOT done, and why.** Otherwise the next session
   "fixes" it and undoes a decision.
+- **Where the work lives.** If anything from the session sits on an unmerged
+  branch or in an undeployed commit, name the branch and head commit, and
+  spell out what putting it live requires — in order, including anything that
+  must happen BEFORE the deploy (a migration, a config value, a third-party
+  setup step). Work that isn't on the default branch is invisible to a next
+  session that never thinks to look, and a deploy checklist without its
+  ordering is how the ordering gets violated.
 - **Traps.** Credentials with surprising scopes, environments that differ,
   commands that look safe and aren't, anything that cost you time to discover.
   This is the highest-value section and the one most often skipped.
