@@ -100,6 +100,13 @@ or no longer worth doing, change or remove it and say so.
 Commit and push. The commit message is part of the handoff — say what was
 corrected and what is still open, not just "update docs".
 
+**Then confirm the push actually landed** — compare the local and remote head
+commits. Some repos push automatically on commit and some don't, so a
+successful commit is not evidence of a successful push. A handoff that exists
+only on your machine is not a handoff.
+
+If you touched more than one repo this session, check every one of them.
+
 Commit any change you made to this procedure too, and say in the message what
 prompted it.
 
