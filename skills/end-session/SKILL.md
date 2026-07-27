@@ -1,6 +1,6 @@
 ---
 name: end-session
-description: Hand a project over cleanly at the end of a working session. Activates when the user says "end a session", "wrap up", "hand this over", or "I'm stopping here". Verifies every claim against the real system before writing it down, updates the project's state file, commits, and produces a copy-paste prompt for the next session.
+description: Hand a project over cleanly at the end of a working session. Activates when the user says "end a session", "wrap up", "hand this over", or "I'm stopping here". Verifies every claim against the real system before writing it down, updates the project's state file, commits, and writes the next session's instructions into that state file (replacing the previous session's, never appending).
 ---
 
 # End a Session
@@ -110,21 +110,47 @@ If you touched more than one repo this session, check every one of them.
 Commit any change you made to this procedure too, and say in the message what
 prompted it.
 
-## Finally: hand over a prompt
+## Finally: write the next session's instructions into the state file
 
-End by giving the user a **copy-paste block** to open the next session with.
-It should:
+**Do not hand the user a prompt to copy and paste.** The state file is loaded
+automatically when someone opens the project, so the instructions for the next
+session belong *in it*. Anything that needs copying gets forgotten, pasted
+stale, or pasted twice.
 
-1. Point at the state file and the key docs, in reading order.
-2. **Tell the next session to verify the docs against the live system before
-   trusting them,** and to report anything that doesn't match. You have just
-   spent a session discovering that written-down claims go stale; assume yours
-   will too.
-3. State the next one or two jobs concretely.
-4. Repeat any hard constraint that applies (don't deploy without asking, don't
-   run migrations without asking, read the mandatory playbook first).
+Put a single **"Start here"** block at the very top of the state file, above
+everything else, so it is the first thing read.
 
-Keep it short enough to paste without editing.
+**Replace it wholesale every session. Never append, never leave two.** Delete
+the block the previous session wrote and put yours in its place — the whole
+point is that exactly one set of instructions exists and it is always the
+current one. Wrap it in markers so the next session can find and replace it
+without guessing:
+
+```
+<!-- NEXT-SESSION:START — replace this whole block each session, never leave two -->
+## ▶ Start here — written <date>, end of session
+...
+<!-- NEXT-SESSION:END -->
+```
+
+The block contains:
+
+1. **What to read, in order** — the last session's write-up, anything mandatory
+   before touching risky areas, then the state section.
+2. **"Verify before you trust this."** Say when the figures were last checked
+   against the live system, and name how to check them. You have just spent a
+   session discovering that written-down claims go stale; assume yours will
+   too. Make clear that reporting a mismatch is useful work, not a detour.
+3. **The next one to three jobs, concretely and in order** — specific enough to
+   act on without this conversation, including what "it worked" looks like.
+4. **The hard constraints**, repeated in full. Never assume they were read
+   elsewhere: what needs asking before it is done, and what must be read first.
+
+Keep it short enough to be read every time. Everything long goes in the dated
+session doc and gets linked from point 1.
+
+Then tell the user, in a sentence, that it is written down and they don't need
+to paste anything.
 
 ## Hard rules
 

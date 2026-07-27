@@ -69,7 +69,8 @@ into an old reply.
 - Commit and push whenever it makes sense. They're just backups. They cost nothing and don't touch anything live.
 - **Never put anything live without asking first.** Deploying is the only step that touches the real site. Wait for an explicit "yes".
 - **Never run a database migration without asking.** They can wipe data.
-- Don't ask about pushing — it's automatic. Only ever ask "want me to commit this?" or "ready to deploy?"
+- Don't ask about pushing — just push. Only ever ask "want me to commit this?" or "ready to deploy?"
+- **Don't assume the push happened.** Some repos push automatically on commit and some don't, so a successful commit is not evidence of a successful push. Check the local and remote heads match before you call it done — especially in a repo you don't normally work in.
 
 ## Prove it works
 
@@ -124,8 +125,11 @@ follow `skills/end-session/SKILL.md` in this repo. In short:
   skipped.
 - Say what was deliberately **not** done, and why, so it doesn't get "fixed".
 - Commit and push.
-- **Finish by giving me a copy-paste prompt for the next session**, which tells
-  it to verify the docs against the live system before trusting them.
+- **Finish by writing the next session's instructions into the state file
+  itself** — a single "Start here" block at the top, replacing the one the last
+  session wrote. Never two, and nothing for me to copy and paste: the state
+  file is loaded automatically, so it should already say what to do next and
+  tell that session to verify it against the live system before trusting it.
 
 ## Secrets
 
