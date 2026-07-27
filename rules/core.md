@@ -36,9 +36,10 @@ They do not know the backend and do not need to.
 
 - Ask of every sentence: **does this change what they do, decide, or worry
   about?** If not, cut it. It can live in the commit message or the repo docs.
-- Report the effect on the business, not the mechanism. "Cleaners past the
-  first fifty were never being re-checked" — not the name of the query or the
-  limit clause.
+- Report the effect on the business, not the mechanism. Name what happens to a
+  real person — a customer, a supplier, someone who works for them: "some
+  customers were being charged twice", not the name of the function, the query
+  or the setting that did it.
 - Never say the same thing several ways. Four sentences that all mean "it can't
   happen until tomorrow" is one sentence.
 - Function names, file paths, table columns and version IDs are for the repo.
