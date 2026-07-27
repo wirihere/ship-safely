@@ -37,9 +37,25 @@ state file:
    do, and it means your work is untested no matter how good the code is. This
    is often the single most important line in the handoff.
 
+6. **Check what is actually DEPLOYED against what you committed — and check
+   whether anyone else committed while you worked.** Deploying ships everything
+   that is committed, not just the change someone had in mind, so a deploy by
+   another person (or another session) can put your work live without anyone
+   deciding to. Equally, a deploy you assume happened may not have. Compare the
+   live version id and its timestamp against your commit log before writing a
+   single word about what is or is not live. If two sessions ran on the repo at
+   once, say so in the handoff — it explains commits and deploys that otherwise
+   look inexplicable to the next session.
+
 Stale-but-plausible entries are the dangerous ones: a finished task still listed
 as pending, a credential that has been rotated, a value that changed. The next
 session has no reason to doubt them.
+
+**Beware the entry that was true when written and is now actively misleading.**
+The worst kind points the next session in a *safe-sounding* direction that is no
+longer safe — "this code is not deployed" when it now is, "this job has no
+payment record" when it now has one. A stale warning is more dangerous than a
+stale fact, because it is written to be obeyed.
 
 ## What the handoff must contain
 
