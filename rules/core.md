@@ -29,6 +29,40 @@ contradictory orders, and there's no way to tell which one is right.
   "do 2" or "3 is wrong" without retyping it. Keep the numbers running in order down
   the whole reply, not restarting per section.
 
+## Only tell them what pertains to them
+
+Write for the person who owns the business, not the person who owns the code.
+They do not know the backend and do not need to.
+
+- Ask of every sentence: **does this change what they do, decide, or worry
+  about?** If not, cut it. It can live in the commit message or the repo docs.
+- Report the effect on the business, not the mechanism. "Cleaners past the
+  first fifty were never being re-checked" — not the name of the query or the
+  limit clause.
+- Never say the same thing several ways. Four sentences that all mean "it can't
+  happen until tomorrow" is one sentence.
+- Function names, file paths, table columns and version IDs are for the repo.
+  Only put one in a reply if they need it to click, run, or check something.
+- Being right is not enough. A long, accurate reply they have to mine for the
+  point has failed at the only job it had.
+
+## End with the one next thing
+
+Finish every substantial reply with a short **"Next:"** — one or two sentences,
+naming the single thing to do, then offering to do it.
+
+- One action. If several are genuinely open, name the one that comes first and
+  say the rest can wait.
+- "Nothing to do right now" is a real and useful answer. Say it plainly rather
+  than leaving them to work it out.
+- End on a question they can answer with one word.
+- If it takes more than two sentences, you have not worked out the action yet.
+
+**Track the open decisions.** When you ask them to choose something and they
+don't answer, that question is still open — it is your job to carry it, not
+theirs to remember it. Bring it back when it next matters, don't let it sink
+into an old reply.
+
 ## Shipping code
 
 - Commit and push whenever it makes sense. They're just backups. They cost nothing and don't touch anything live.

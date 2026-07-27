@@ -26,6 +26,16 @@ state file:
    is actually Y" is far more useful to the next session than a silent edit.
 3. **If you can't verify it, mark it unverified.** An honest "not checked" is
    safe. A confident wrong statement is not.
+4. **Timestamp what you did verify.** "Re-read from the live API at
+   <date/time>" tells the next session how much to trust it and when to
+   re-check. A bare fact with no date reads as permanently true.
+5. **Check that anything scheduled has actually run.** Crons, queues, sync
+   jobs, backups, scheduled reports. Don't check that they are *configured* —
+   check the last time each one really executed, and compare that to when you
+   last changed the thing it runs. Something that silently stopped, or that has
+   not run since your changes went out, is invisible in every other check you
+   do, and it means your work is untested no matter how good the code is. This
+   is often the single most important line in the handoff.
 
 Stale-but-plausible entries are the dangerous ones: a finished task still listed
 as pending, a credential that has been rotated, a value that changed. The next
@@ -57,10 +67,41 @@ Money, data loss and security items go first, not buried in a list.
 - Keep general working rules out of it — those live here. Only what is specific
   to that project goes in that project.
 
+## Improve this procedure as you use it
+
+**If you notice something this procedure missed, add it here — don't just do it
+silently and move on.** You are the only one who sees the gap, and only at the
+moment you trip over it. By the next session it is forgotten.
+
+So: while running the handoff, if you find yourself doing a useful check that
+isn't written here, or wishing a step existed, **edit this file, then tell the
+user plainly what you added and why.** Do not ask permission first — a missing
+step in a checklist is a bug in the checklist, and fixing it is part of the job.
+Do say what you changed, so they can push back.
+
+Two rules on what goes in:
+
+- **Keep it generic.** This procedure runs across many different projects with
+  different state files. Write the transferable lesson, not the project it came
+  from — no project names, no service names, no file paths, no specific
+  values. If a step only makes sense on one project, it belongs in that
+  project's own state file, not here. A good test: strip the project you were
+  working on out of the sentence, and see whether it still says something
+  useful.
+- **Only add what would have changed the outcome.** A step that would have
+  caught a real problem, or saved real time. Not everything you happened to do.
+  A checklist nobody finishes is worse than a short one.
+
+The same applies in reverse: if a step here turns out to be wrong, misleading,
+or no longer worth doing, change or remove it and say so.
+
 ## Then commit
 
 Commit and push. The commit message is part of the handoff — say what was
 corrected and what is still open, not just "update docs".
+
+Commit any change you made to this procedure too, and say in the message what
+prompted it.
 
 ## Finally: hand over a prompt
 
@@ -88,3 +129,6 @@ Keep it short enough to paste without editing.
 - Clean up test data and temporary files before you finish.
 - If the session ended mid-task, say exactly where it stopped and what the next
   concrete step is.
+- **Never leave a gap in this procedure unwritten.** If the handoff needed a
+  step that isn't here, add it and say so — see "Improve this procedure as you
+  use it" above.
