@@ -8,7 +8,7 @@ Most AI coding tools either auto-ship everything (dangerous for live sites) or g
 
 | Skill | What it does |
 |---|---|
-| **commit-push-deploy** | Commits and pushes are automatic backups. Deploys need an explicit human "yes." Database migrations always ask first. |
+| **commit-push-deploy** | Commits and pushes are automatic backups. Deploys need an explicit human "yes." Database migrations always ask first. Also sets how much review a change earns before it ships — nothing for copy, a re-read for ordinary code, an independent adversarial pass for money, crons, migrations, sends and permissions. |
 | **source-of-truth** | When investigating or instructing, check the third-party service's API/docs first — not the database, not memory. Prefer the API over the dashboard. |
 | **end-session** | Hand a project over cleanly. Verify every claim against the live system before writing it down, correct what's stale, record the traps, and write the next session's instructions into the project's own state file — replacing the previous session's block, never adding a second. |
 
