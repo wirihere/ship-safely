@@ -47,6 +47,14 @@ state file:
    once, say so in the handoff — it explains commits and deploys that otherwise
    look inexplicable to the next session.
 
+7. **Assume another session may be LIVE in the same checkout right now — not
+   just in the history.** A live one switches branches under your running dev
+   server (which hot-reloads, so you silently test the wrong code), owns the
+   processes you're about to kill as "orphans", and deploys while you work.
+   Before you switch branches, kill a stray process, or clean up, check what
+   is running and whose it is — and if two sessions shared the checkout, the
+   handoff must say which branch each one owns.
+
 Stale-but-plausible entries are the dangerous ones: a finished task still listed
 as pending, a credential that has been rotated, a value that changed. The next
 session has no reason to doubt them.
