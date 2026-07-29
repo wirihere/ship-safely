@@ -47,7 +47,16 @@ state file:
    once, say so in the handoff — it explains commits and deploys that otherwise
    look inexplicable to the next session.
 
-7. **Assume another session may be LIVE in the same checkout right now — not
+7. **Check which branch is actually deployed, and whether the default branch
+   would undo it.** "What is deployed" is not only a version id — it is a
+   version id *from a branch*. When production is running a feature branch,
+   the default branch is no longer a safe thing to deploy: shipping it would
+   silently remove live work. Compare the deployed build to the default branch
+   and, if they differ, say so at the very top of the handoff in those words.
+   A next session that assumes "deploy the main branch" is the normal, safe
+   action will undo everything without being warned by anything else.
+
+8. **Assume another session may be LIVE in the same checkout right now — not
    just in the history.** A live one switches branches under your running dev
    server (which hot-reloads, so you silently test the wrong code), owns the
    processes you're about to kill as "orphans", and deploys while you work.
