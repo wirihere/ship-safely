@@ -73,6 +73,17 @@ state file:
    believing it in either direction. Reporting "the fix didn't work" when it
    did is as damaging as the reverse.
 
+10. **Grep the state file for the values you just superseded.** Having written
+   the new numbers, search the whole file for the OLD ones — the previous
+   version id, the previous branch head, the previous counts, the phrase that
+   has just stopped being true ("not deployed", "nothing built yet"). A state
+   file repeats its key facts in several places: a summary at the top, a table
+   further down, an aside in a list. Updating the section you were looking at
+   and leaving the other three is the most common way a handoff ends up
+   contradicting itself, and the copies you miss are the ones nobody was
+   thinking about — which is exactly why the next session believes them. This
+   is mechanical and takes a minute.
+
 Stale-but-plausible entries are the dangerous ones: a finished task still listed
 as pending, a credential that has been rotated, a value that changed. The next
 session has no reason to doubt them.
