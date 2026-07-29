@@ -64,6 +64,15 @@ state file:
    is running and whose it is — and if two sessions shared the checkout, the
    handoff must say which branch each one owns.
 
+9. **A freshly deployed system can lie to you for a few minutes.** Caches,
+   CDNs and edge networks serve the previous copy while a rollout propagates,
+   so a check run straight after deploying can report the old behaviour — or
+   the old *content* alongside the new. This corrupts the one step everything
+   else here depends on. Verify with a fresh session and a cache-busting
+   request, and if a result contradicts what you just shipped, re-check before
+   believing it in either direction. Reporting "the fix didn't work" when it
+   did is as damaging as the reverse.
+
 Stale-but-plausible entries are the dangerous ones: a finished task still listed
 as pending, a credential that has been rotated, a value that changed. The next
 session has no reason to doubt them.
@@ -224,6 +233,13 @@ prompted it.
 - **Never quietly drop something that is still broken** because the session ran
   long. Unfinished is fine; invisible is not.
 - Clean up test data and temporary files before you finish.
+- **Restore any file you overwrote from version control, not from a backup you
+  made yourself.** Sessions that stage a file temporarily — copying a working
+  file over a shared entry point, then putting it back — routinely restore the
+  wrong thing, because the backup was taken after the first overwrite rather
+  than before it. `git checkout -- <file>` is the only restore that is
+  certainly correct. Then confirm the file is what it should be, not merely
+  that a restore command ran, and check no `.bak` files were left behind.
 - If the session ended mid-task, say exactly where it stopped and what the next
   concrete step is.
 - **Never leave a gap in this procedure unwritten.** If the handoff needed a
