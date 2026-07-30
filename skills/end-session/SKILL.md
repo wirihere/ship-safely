@@ -117,6 +117,19 @@ state file:
    thinking about — which is exactly why the next session believes them. This
    is mechanical and takes a minute.
 
+13. **Before writing "tested" or "all passing", check the test actually reached
+   the thing.** A suite can go green without exercising the code at all —
+   because auth silently failed and every request got a login page, because a
+   fixture no longer matches a state the system permits, because the run hit a
+   cache, or because it measured a URL that does not exist and got a friendly
+   error page. Nothing about that looks like a failure; it looks like success,
+   and it is the most convincing wrong sentence you can put in a handoff.
+   So for anything you are about to describe as verified, confirm the
+   **precondition** as well as the outcome: that it was logged in, that it
+   loaded the page you meant, that the assertion would have failed had the
+   behaviour been wrong. Cheapest version: break it on purpose once and watch it
+   go red. If you cannot show it failing, you have not shown it passing.
+
 Stale-but-plausible entries are the dangerous ones: a finished task still listed
 as pending, a credential that has been rotated, a value that changed. The next
 session has no reason to doubt them.
