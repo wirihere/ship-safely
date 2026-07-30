@@ -93,7 +93,20 @@ state file:
    believing it in either direction. Reporting "the fix didn't work" when it
    did is as damaging as the reverse.
 
-11. **Grep the state file for the values you just superseded.** Having written
+11. **Recompute every derived number. Never carry one forward and adjust it by
+   feel.** State files accumulate figures that are really measurements of the
+   system — how far one branch is ahead of another, how many rows, how many
+   checks a suite runs, how many places quote a value. Each session reads the
+   last number, reckons it has gone up a bit, and writes a slightly bigger one.
+   Nobody ever re-measures, and after a few sessions the figure is wrong by a
+   factor. It is convincing precisely because it has been there for ages and
+   keeps changing, which reads as maintenance. **If a number can be produced by
+   a command, run the command.** If it cannot, say where it came from and that
+   it is an estimate. And when you find one that was wrong, say so in the
+   handoff and in the commit — a silently corrected number teaches the next
+   session nothing, and the same drift starts again.
+
+12. **Grep the state file for the values you just superseded.** Having written
    the new numbers, search the whole file for the OLD ones — the previous
    version id, the previous branch head, the previous counts, the phrase that
    has just stopped being true ("not deployed", "nothing built yet"). A state
