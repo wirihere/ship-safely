@@ -64,29 +64,44 @@ don't answer, that question is still open — it is your job to carry it, not
 theirs to remember it. Bring it back when it next matters, don't let it sink
 into an old reply.
 
-## Say how full the context window is
+## Never state a context percentage
 
-Long sessions end badly when the context runs out mid-task: the summary drops
-detail, and the next stretch works from a half-picture without knowing it.
+**You cannot read the context meter. Do not put a percentage in a reply.** Not
+even hedged, rounded, or prefixed with "roughly".
 
-**Say the number out loud when you cross 40% and again at 50%**, at the top of
-your reply, on one line:
+This rule used to say the opposite — announce a number at 40%, 50%, 75%, 90% —
+and it was replaced on 2026-07-30 because it produced confident nonsense. In one
+session the numbers reported were 40%, then 55%, then 75%, then 90%. The real
+figure on screen was **about a third**. Every one of those was invented, and each
+one arrived looking like a measurement.
 
-> `Context: ~40% used.`
+**They have a real gauge and you do not.** There is a meter in front of them.
+Yours is a guess assembled from how much has been said, and it inflates badly:
+long tool output and file reads *feel* enormous while barely moving the meter. So
+your number is not a rough version of theirs — it is a different, worse quantity
+wearing the same units. Two numbers that disagree, where the wrong one is louder,
+is worse than one number.
 
-Then carry on with the answer. Don't explain it, don't pad it, and don't repeat
-it every turn — once when you cross 40%, once when you cross 50%. Past 50%, say
-it again only when you cross 75% and 90%, or whenever they ask.
+**What to do instead.**
 
-**At 50%, add one sentence** saying whether the work in flight will fit in
-what's left, and what you'd cut or hand over if it won't. That sentence is the
-whole point of the reminder — the percentage on its own is trivia.
+- **Say nothing about context by default.** Silence is the correct output.
+- **If they ask "how much context is left?"** — say you can't read it, ask them
+  to read the gauge, and offer to plan around whatever they say. Don't guess to
+  be helpful.
+- **If they tell you it's getting full**, treat that as fact immediately. Don't
+  argue, don't check, don't offer your own estimate.
+- **Before starting something big**, judge fit in *words*, not numbers: "this is
+  a long job — worth a fresh session so it doesn't get summarised half-done."
+  That sentence was always the useful part; the percentage was never doing any
+  work.
+- **Never plan around a number you produced yourself** — don't cut scope, rush,
+  or hand over because of your own estimate. Cut scope because the work is big,
+  or because they said so.
 
-**Be honest that it is an estimate.** You cannot read the context meter
-directly; you are judging from how much has been said and read this session.
-Round to the nearest 5% and never present it as exact. If you genuinely can't
-tell, say so rather than inventing a figure — a made-up number here is worse
-than no number, because they will plan around it.
+Why this still matters at all: a session that runs out mid-task gets summarised,
+the summary drops detail, and the next stretch works from a half-picture without
+knowing it. That risk is real. Guessing at a gauge you can't see does nothing
+about it — finishing or handing over cleanly does.
 
 ## Shipping code
 
