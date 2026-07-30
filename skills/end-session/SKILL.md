@@ -37,7 +37,27 @@ state file:
    do, and it means your work is untested no matter how good the code is. This
    is often the single most important line in the handoff.
 
-6. **Check what is actually DEPLOYED against what you committed — and check
+   **And beware checking too soon.** A read taken moments after a scheduled slot
+   can miss the record of the run that just happened — the job fires, writes its
+   row a beat later, and your query returns the previous one. That produces a
+   confident "it never ran" in the handoff about a job that ran fine, which is
+   worse than not checking: the next session goes looking for a fault that does
+   not exist. If a scheduled thing looks dead, wait past its next slot and look
+   again before writing it down.
+
+6. **Ask whether a failing alarm is telling the truth before you repeat it.** A
+   monitor, health check or test that reports a problem is a claim, not a fact.
+   Two things make that claim wrong in opposite directions, and both are common
+   at handoff time: a check whose *own logic* is broken (so it fails on correct
+   behaviour), and a check whose thresholds no longer match how the system
+   normally behaves (so a routine state reads as a fault). Either way it will
+   have been failing for a while, which is exactly why nobody looks at it any
+   more. Before writing "X is unhealthy", verify the underlying thing
+   independently. If the alarm is wrong, say so in the handoff and fix or flag
+   the alarm — **a permanently-failing check is a safety net that has been
+   switched off without anyone deciding to.**
+
+7. **Check what is actually DEPLOYED against what you committed — and check
    whether anyone else committed while you worked.** Deploying ships everything
    that is committed, not just the change someone had in mind, so a deploy by
    another person (or another session) can put your work live without anyone
@@ -47,7 +67,7 @@ state file:
    once, say so in the handoff — it explains commits and deploys that otherwise
    look inexplicable to the next session.
 
-7. **Check which branch is actually deployed, and whether the default branch
+8. **Check which branch is actually deployed, and whether the default branch
    would undo it.** "What is deployed" is not only a version id — it is a
    version id *from a branch*. When production is running a feature branch,
    the default branch is no longer a safe thing to deploy: shipping it would
@@ -56,7 +76,7 @@ state file:
    A next session that assumes "deploy the main branch" is the normal, safe
    action will undo everything without being warned by anything else.
 
-8. **Assume another session may be LIVE in the same checkout right now — not
+9. **Assume another session may be LIVE in the same checkout right now — not
    just in the history.** A live one switches branches under your running dev
    server (which hot-reloads, so you silently test the wrong code), owns the
    processes you're about to kill as "orphans", and deploys while you work.
@@ -64,7 +84,7 @@ state file:
    is running and whose it is — and if two sessions shared the checkout, the
    handoff must say which branch each one owns.
 
-9. **A freshly deployed system can lie to you for a few minutes.** Caches,
+10. **A freshly deployed system can lie to you for a few minutes.** Caches,
    CDNs and edge networks serve the previous copy while a rollout propagates,
    so a check run straight after deploying can report the old behaviour — or
    the old *content* alongside the new. This corrupts the one step everything
@@ -73,7 +93,7 @@ state file:
    believing it in either direction. Reporting "the fix didn't work" when it
    did is as damaging as the reverse.
 
-10. **Grep the state file for the values you just superseded.** Having written
+11. **Grep the state file for the values you just superseded.** Having written
    the new numbers, search the whole file for the OLD ones — the previous
    version id, the previous branch head, the previous counts, the phrase that
    has just stopped being true ("not deployed", "nothing built yet"). A state
