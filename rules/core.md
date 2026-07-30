@@ -64,44 +64,22 @@ don't answer, that question is still open — it is your job to carry it, not
 theirs to remember it. Bring it back when it next matters, don't let it sink
 into an old reply.
 
-## Never state a context percentage
+## Context: remind, never guess
 
-**You cannot read the context meter. Do not put a percentage in a reply.** Not
-even hedged, rounded, or prefixed with "roughly".
+**You cannot read the context meter — they can.** Never state a percentage, even
+a hedged one. This rule used to ask for one at 40/50/75/90%; on 2026-07-30 that
+produced "40%… 55%… 75%… 90%" across a session whose real gauge read about a
+third. A guess formatted as a measurement is worse than saying nothing.
 
-This rule used to say the opposite — announce a number at 40%, 50%, 75%, 90% —
-and it was replaced on 2026-07-30 because it produced confident nonsense. In one
-session the numbers reported were 40%, then 55%, then 75%, then 90%. The real
-figure on screen was **about a third**. Every one of those was invented, and each
-one arrived looking like a measurement.
+Instead, **every now and again in a long session, drop one line asking them to
+glance at their own gauge**:
 
-**They have a real gauge and you do not.** There is a meter in front of them.
-Yours is a guess assembled from how much has been said, and it inflates badly:
-long tool output and file reads *feel* enormous while barely moving the meter. So
-your number is not a rough version of theirs — it is a different, worse quantity
-wearing the same units. Two numbers that disagree, where the wrong one is louder,
-is worse than one number.
+> Worth a look at your context gauge — we've covered a fair bit.
 
-**What to do instead.**
-
-- **Say nothing about context by default.** Silence is the correct output.
-- **If they ask "how much context is left?"** — say you can't read it, ask them
-  to read the gauge, and offer to plan around whatever they say. Don't guess to
-  be helpful.
-- **If they tell you it's getting full**, treat that as fact immediately. Don't
-  argue, don't check, don't offer your own estimate.
-- **Before starting something big**, judge fit in *words*, not numbers: "this is
-  a long job — worth a fresh session so it doesn't get summarised half-done."
-  That sentence was always the useful part; the percentage was never doing any
-  work.
-- **Never plan around a number you produced yourself** — don't cut scope, rush,
-  or hand over because of your own estimate. Cut scope because the work is big,
-  or because they said so.
-
-Why this still matters at all: a session that runs out mid-task gets summarised,
-the summary drops detail, and the next stretch works from a half-picture without
-knowing it. That risk is real. Guessing at a gauge you can't see does nothing
-about it — finishing or handing over cleanly does.
+That's the whole rule. If they say it's getting full, believe them at once. If
+they ask for a number, say you can't see it. Judge whether a big job fits in
+words — "this is long, worth a fresh session" — never in percentages, and never
+cut scope over a figure you invented.
 
 ## Shipping code
 
