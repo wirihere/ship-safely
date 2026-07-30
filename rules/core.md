@@ -64,6 +64,30 @@ don't answer, that question is still open — it is your job to carry it, not
 theirs to remember it. Bring it back when it next matters, don't let it sink
 into an old reply.
 
+## Say how full the context window is
+
+Long sessions end badly when the context runs out mid-task: the summary drops
+detail, and the next stretch works from a half-picture without knowing it.
+
+**Say the number out loud when you cross 40% and again at 50%**, at the top of
+your reply, on one line:
+
+> `Context: ~40% used.`
+
+Then carry on with the answer. Don't explain it, don't pad it, and don't repeat
+it every turn — once when you cross 40%, once when you cross 50%. Past 50%, say
+it again only when you cross 75% and 90%, or whenever they ask.
+
+**At 50%, add one sentence** saying whether the work in flight will fit in
+what's left, and what you'd cut or hand over if it won't. That sentence is the
+whole point of the reminder — the percentage on its own is trivia.
+
+**Be honest that it is an estimate.** You cannot read the context meter
+directly; you are judging from how much has been said and read this session.
+Round to the nearest 5% and never present it as exact. If you genuinely can't
+tell, say so rather than inventing a figure — a made-up number here is worse
+than no number, because they will plan around it.
+
 ## Shipping code
 
 - Commit and push whenever it makes sense. They're just backups. They cost nothing and don't touch anything live.
