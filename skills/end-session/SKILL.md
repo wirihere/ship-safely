@@ -194,6 +194,26 @@ Money, data loss and security items go first, not buried in a list.
   file links to it.
 - Keep general working rules out of it — those live here. Only what is specific
   to that project goes in that project.
+- **If the work landed somewhere other than the project whose state file loads
+  automatically, update that state file anyway — to say the work was elsewhere.**
+  A session often runs from one project's folder while the actual change goes
+  into another repo, a shared library, or a third-party dashboard. The state
+  file that opens next is the one you were sitting in, and if it is untouched it
+  silently implies nothing happened and its figures are current. Both readings
+  are wrong. Write one line at the top naming where the work went, and say
+  plainly that nothing in this project moved.
+
+  **Then do not re-assert that file's existing figures as if you had checked
+  them.** You did not — you were working elsewhere, and re-verifying an entire
+  unrelated project is a session's work on its own. Blanking them is worse.
+  **Split the block instead: what you re-read this session with today's
+  timestamp, and what is carried forward with the timestamp it originally had,
+  under a heading that says so.** A single undifferentiated list makes the
+  oldest entry look as fresh as the newest, which is exactly the failure this
+  whole procedure exists to prevent. Re-check the cheap, high-consequence ones
+  regardless — what is deployed, and whether the scheduled jobs are still
+  running — because those are what an unrelated session is most likely to have
+  broken without anyone noticing.
 
 ## Improve this procedure as you use it
 
