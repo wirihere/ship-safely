@@ -119,6 +119,15 @@ state file:
    handoff and in the commit — a silently corrected number teaches the next
    session nothing, and the same drift starts again.
 
+   **And take the reading at the END, not when you first look.** A number can go
+   stale inside the same session that measured it: you count something, keep
+   working, change or commit the very thing you counted, and hand over a figure
+   that was right an hour ago. It is the identical failure to carrying one
+   forward between sessions, except it happens to a number you personally
+   verified — which is exactly why you will not doubt it. Measure in the same
+   pass as writing the handoff, after the last change lands, and if it moved
+   since your earlier reading, say so.
+
 12. **Grep the state file for the values you just superseded.** Having written
    the new numbers, search the whole file for the OLD ones — the previous
    version id, the previous branch head, the previous counts, the phrase that
