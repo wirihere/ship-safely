@@ -67,6 +67,19 @@ state file:
    once, say so in the handoff — it explains commits and deploys that otherwise
    look inexplicable to the next session.
 
+   **And do not answer "what is deployed" from version ids alone — probe the
+   running system.** Many deploy tools ship the working DIRECTORY, not a commit.
+   When a checkout is shared, code that exists in nobody's git history can be
+   live in production: someone's uncommitted work was in the folder at the
+   moment a build was cut. Comparing version ids to your commit log cannot see
+   that, because there is nothing in the log to see. So for anything that
+   matters — a route that should require a login, a feature that should still
+   be switched off — **ask the live system directly and compare the answer to
+   what the code in your tree says it should be.** A difference means something
+   is deployed that nobody committed. This is also how you discover that a
+   privileged endpoint went out without its guard, which no amount of reading
+   git will ever tell you.
+
 8. **Check which branch is actually deployed, and whether the default branch
    would undo it.** "What is deployed" is not only a version id — it is a
    version id *from a branch*. When production is running a feature branch,
