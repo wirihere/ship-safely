@@ -152,6 +152,24 @@ state file:
    behaviour been wrong. Cheapest version: break it on purpose once and watch it
    go red. If you cannot show it failing, you have not shown it passing.
 
+14. **When the state file says something has NEVER happened, go and look in the
+   place that would record it if it had.** "No customer has reviewed yet", "no
+   refund has ever been processed", "nothing has been sold", "that job has never
+   run" — these are the easiest claims in the whole file to carry forward,
+   because nothing ever prompts you to check them. There is no failure to
+   investigate, no alarm going off, no number that looks odd. They simply sit
+   there being quietly repeated, and each session that repeats one makes the
+   next session trust it more.
+
+   They are also the claims that go stale most suddenly, because the thing they
+   describe usually happens exactly once and then is true forever. The cost of
+   checking is one count against the store that would hold it. The cost of not
+   checking is a handoff that tells the next session a milestone has not been
+   reached when it has — so they go looking for a fault in a system that just
+   started working, or they leave a feature switched off that is now live and
+   unwatched. **Count the rows. It takes seconds and it is the cheapest way to
+   catch the change nobody was watching for.**
+
 Stale-but-plausible entries are the dangerous ones: a finished task still listed
 as pending, a credential that has been rotated, a value that changed. The next
 session has no reason to doubt them.
