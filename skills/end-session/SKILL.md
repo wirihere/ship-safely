@@ -170,6 +170,24 @@ state file:
    unwatched. **Count the rows. It takes seconds and it is the cheapest way to
    catch the change nobody was watching for.**
 
+15. **Count what is sitting in a queue waiting for a HUMAN, right now.** Not
+   what a job did, not what a number says — what has arrived and is waiting on
+   a person: an application awaiting approval, a payout awaiting sign-off, a
+   message nobody answered, a request pending review, an invitation accepted
+   but not acted on. These are invisible to every other check here. No alarm
+   fires, no test fails, no figure looks odd — the system is behaving perfectly
+   by holding the item and waiting, which is exactly the problem.
+
+   They also arrive on someone else's schedule, so one can land in the last hour
+   of a session that started before it existed. And the cost of missing one is
+   paid by a real person who is waiting and hearing nothing, which is a different
+   and worse kind of cost than a stale number.
+
+   **One count per queue, and name anyone who is waiting at the very top of the
+   handoff** — above the technical state, because a person waiting outranks a
+   version id. If the state file describes someone as not having responded,
+   this is also the check that discovers they have.
+
 Stale-but-plausible entries are the dangerous ones: a finished task still listed
 as pending, a credential that has been rotated, a value that changed. The next
 session has no reason to doubt them.
