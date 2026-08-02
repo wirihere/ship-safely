@@ -139,6 +139,15 @@ state file:
    handoff and in the commit — a silently corrected number teaches the next
    session nothing, and the same drift starts again.
 
+   **Some numbers cannot be stated without changing them — say which commit
+   they belong to.** A count of commits, of files changed, of lines in the state
+   file: writing it down is itself a change, so the figure is stale the instant
+   it is committed, and the correction is stale again. Do not chase it. Name the
+   point it was true at — "N as of commit abc1234" — so the next session can
+   tell whether the drift since is one handoff commit or six months of work. A
+   bare number with no anchor invites exactly the adjust-by-feel habit this step
+   exists to stop.
+
    **And take the reading at the END, not when you first look.** A number can go
    stale inside the same session that measured it: you count something, keep
    working, change or commit the very thing you counted, and hand over a figure
