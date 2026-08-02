@@ -45,6 +45,26 @@ state file:
    not exist. If a scheduled thing looks dead, wait past its next slot and look
    again before writing it down.
 
+   **A last-run time alone cannot tell you a job is healthy — check what it was
+   supposed to PRODUCE, and what it CONSUMES.** A job can fire perfectly on
+   schedule and achieve nothing every time, because the work it does fails a
+   check inside it, or its input queue is empty, or its output is rejected
+   downstream. From the outside that looks identical to a job that stopped
+   running. So make three reads, not one: when it last ran, whether the thing it
+   creates has appeared since, and the state of whatever it works through.
+   Anything marked failed or errored in that queue is the actual diagnosis, and
+   it is usually one query away.
+
+   **Then check the recorded run times against the schedule it is configured
+   with — as days and hours, not just "recently".** If the timestamps do not
+   land where the configuration says they should, the notes' reading of that
+   schedule is wrong, not the scheduler: day-of-week and timezone conventions
+   differ between tools, and a written-down "runs Tuesdays" is an assumption
+   nobody re-derived. Two recorded runs are enough to see the real interval.
+   Getting this wrong sends every future session hunting a dead job that is
+   running fine — and it survives handoff after handoff, because each one copies
+   the claim rather than re-measuring it.
+
 6. **Ask whether a failing alarm is telling the truth before you repeat it.** A
    monitor, health check or test that reports a problem is a claim, not a fact.
    Two things make that claim wrong in opposite directions, and both are common
