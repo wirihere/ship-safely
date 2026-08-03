@@ -126,7 +126,24 @@ state file:
    believing it in either direction. Reporting "the fix didn't work" when it
    did is as damaging as the reverse.
 
-11. **Recompute every derived number. Never carry one forward and adjust it by
+11. **If your usual access breaks, reach the same fact another way — and never
+   carry the old tool's conventions across.** A stored login expiring mid-session
+   is common, and the temptation is to write "could not verify" for everything
+   that depended on it. Usually another route exists: the service's REST API with
+   a token from the project's own secrets, a web dashboard, an admin endpoint on
+   the running system. Take it, and record in the handoff which route you used
+   and why, so the next session isn't blocked by the same expiry.
+
+   **But treat the substitute as a different tool, because it is.** The same data
+   through a different interface can be ordered, paginated, named or filtered
+   differently — most dangerously, **a list the CLI returns oldest-first may come
+   back newest-first from the API.** Habits formed on one silently produce a
+   confident wrong answer on the other, and "what is currently deployed" is
+   exactly the kind of fact this corrupts. Never take the first or last element
+   of a list to mean newest: **sort explicitly by the timestamp**, and sanity-check
+   the result against something you did yourself this session.
+
+12. **Recompute every derived number. Never carry one forward and adjust it by
    feel.** State files accumulate figures that are really measurements of the
    system — how far one branch is ahead of another, how many rows, how many
    checks a suite runs, how many places quote a value. Each session reads the
@@ -157,7 +174,7 @@ state file:
    pass as writing the handoff, after the last change lands, and if it moved
    since your earlier reading, say so.
 
-12. **Grep the state file for the values you just superseded.** Having written
+13. **Grep the state file for the values you just superseded.** Having written
    the new numbers, search the whole file for the OLD ones — the previous
    version id, the previous branch head, the previous counts, the phrase that
    has just stopped being true ("not deployed", "nothing built yet"). A state
@@ -168,7 +185,7 @@ state file:
    thinking about — which is exactly why the next session believes them. This
    is mechanical and takes a minute.
 
-13. **Before writing "tested" or "all passing", check the test actually reached
+14. **Before writing "tested" or "all passing", check the test actually reached
    the thing.** A suite can go green without exercising the code at all —
    because auth silently failed and every request got a login page, because a
    fixture no longer matches a state the system permits, because the run hit a
@@ -181,7 +198,7 @@ state file:
    behaviour been wrong. Cheapest version: break it on purpose once and watch it
    go red. If you cannot show it failing, you have not shown it passing.
 
-14. **When the state file says something has NEVER happened, go and look in the
+15. **When the state file says something has NEVER happened, go and look in the
    place that would record it if it had.** "No customer has reviewed yet", "no
    refund has ever been processed", "nothing has been sold", "that job has never
    run" — these are the easiest claims in the whole file to carry forward,
@@ -199,7 +216,7 @@ state file:
    unwatched. **Count the rows. It takes seconds and it is the cheapest way to
    catch the change nobody was watching for.**
 
-15. **Count what is sitting in a queue waiting for a HUMAN, right now.** Not
+16. **Count what is sitting in a queue waiting for a HUMAN, right now.** Not
    what a job did, not what a number says — what has arrived and is waiting on
    a person: an application awaiting approval, a payout awaiting sign-off, a
    message nobody answered, a request pending review, an invitation accepted
