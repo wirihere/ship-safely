@@ -234,6 +234,27 @@ state file:
    version id. If the state file describes someone as not having responded,
    this is also the check that discovers they have.
 
+17. **For anything you shipped that acts on a population, count how many
+   actually qualify TODAY — and write the number down.** A new feature can be
+   correct, deployed, fully tested and still reach nobody, because the group it
+   selects for happens to be empty or tiny right now: everyone is already
+   excluded by one of its own conditions, or the records it looks for do not
+   exist yet.
+
+   From the outside that is indistinguishable from a broken feature. It produces
+   no output, no alarm, no error — and the next session, told the thing is live,
+   reads the silence as a fault and goes hunting for one. That is a whole
+   session spent proving nothing was wrong.
+
+   So run the selection the feature itself runs, against the real data, and
+   report the count with the reason: how many qualify, and which conditions are
+   excluding the rest. Then say plainly in the handoff whether silence is the
+   **expected** outcome for now, and name the specific thing to look at before
+   anyone concludes otherwise — the log, table or tag that would show it having
+   fired. This costs one query and it is the difference between "quiet because
+   there is nothing to do" and "quiet because it is broken", which nothing else
+   in this checklist can tell apart.
+
 Stale-but-plausible entries are the dangerous ones: a finished task still listed
 as pending, a credential that has been rotated, a value that changed. The next
 session has no reason to doubt them.
