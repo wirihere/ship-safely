@@ -414,6 +414,17 @@ prompted it.
 - **Never quietly drop something that is still broken** because the session ran
   long. Unfinished is fine; invisible is not.
 - Clean up test data and temporary files before you finish.
+- **Before deleting any working directory, check whether it contains a LINK to
+  something shared.** Sessions routinely link a throwaway copy to a shared
+  dependency folder to avoid a slow reinstall. A recursive or forced delete can
+  then follow that link and destroy the *shared* thing, not the copy — and the
+  damage is close to invisible, because the top-level entry count of the shared
+  folder is unchanged and only something deep inside is gone. It surfaces later
+  as a build failing on a missing package, in a session that has no idea a
+  cleanup caused it. **Remove the link first, confirm it is gone, confirm the
+  shared folder is still intact, and only then delete the directory.** If a
+  forced delete fails with a permission error, treat that as a warning and look
+  before overriding it — a partial delete may already have happened.
 - **Restore any file you overwrote from version control, not from a backup you
   made yourself.** Sessions that stage a file temporarily — copying a working
   file over a shared entry point, then putting it back — routinely restore the
