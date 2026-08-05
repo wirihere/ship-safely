@@ -165,6 +165,19 @@ state file:
    bare number with no anchor invites exactly the adjust-by-feel habit this step
    exists to stop.
 
+   **A count produced by a SEARCH is only as good as the search, and searches
+   fail quietly in one direction — low.** Before writing "this appears in N
+   places" or "there are no more of these left", ask what your method cannot
+   see. A pattern with a fixed amount of context around it silently drops
+   matches near the start or end of a line; a length cap drops the long ones; a
+   search of source text counts things nobody can see, while a search of visible
+   text misses the ones assembled at runtime. Every one of those under-reports,
+   and an under-report reads exactly like good news: fewer places to fix, job
+   nearly done. **Cross-check with a second method that fails differently, and
+   if the two disagree, believe the larger number until you have read the extra
+   matches yourself.** A number that is too low is worse than no number, because
+   it converts "we do not know how big this is" into a confident finish line.
+
    **And take the reading at the END, not when you first look.** A number can go
    stale inside the same session that measured it: you count something, keep
    working, change or commit the very thing you counted, and hand over a figure
