@@ -211,6 +211,24 @@ state file:
    behaviour been wrong. Cheapest version: break it on purpose once and watch it
    go red. If you cannot show it failing, you have not shown it passing.
 
+14a. **Before believing any result, confirm the EDIT that produced it actually
+   landed.** Scripted find-and-replace — a one-liner, a small script, a bulk
+   rename — reports success whether or not it matched anything. Line endings,
+   invisible characters, an em dash, a quote style, or text that moved since you
+   last looked are all enough to make it match nothing, and it exits cleanly and
+   prints its own confidence.
+
+   That corrupts the checks either side of it. A verification run then measures
+   the *unchanged* system and reports it as fixed. Worse, it silently defeats
+   step 14's "break it on purpose": the break is never applied, the check passes,
+   and you write down that a check is a real discriminator when you have just
+   proved nothing at all — the exact failure the whole step exists to catch.
+
+   So make the replacement itself fail loudly when it matches nothing: assert on
+   the match, use a tool that errors on a missing target, or read the file back
+   and confirm the new text is there and the old text is gone. **One line of
+   output saying "changed" is not evidence. The changed file is.**
+
 15. **When the state file says something has NEVER happened, go and look in the
    place that would record it if it had.** "No customer has reviewed yet", "no
    refund has ever been processed", "nothing has been sold", "that job has never
