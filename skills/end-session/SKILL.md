@@ -229,6 +229,27 @@ state file:
    and confirm the new text is there and the old text is gone. **One line of
    output saying "changed" is not evidence. The changed file is.**
 
+14b. **A verification QUERY that fails looks exactly like one that found
+   nothing — and at handoff time you are asking mostly "is anyone waiting?"
+   questions, where empty is the answer you half expect.** A wrong column name, a
+   renamed field, an expired token, a rate limit: each returns an error, and an
+   error piped through anything that expects rows — a parser, a `grep` for the
+   fields you wanted, a count — yields zero lines. Zero lines then reads as
+   *"nobody is waiting"*, *"nothing has been sent"*, *"there are no leads"*, and
+   that is what gets written down.
+
+   It fails in the reassuring direction every time, which is why nobody
+   double-checks it. And the schema you are querying is the one thing you did not
+   write and did not review — column names drift, and the name you remember is
+   often the name from a different table.
+
+   **So prove the query ran before you believe what it returned.** Confirm the
+   response actually contains a result set rather than an error, or re-ask with a
+   count you already know is not zero, or select the row without the filter first
+   and read its real column names. Do this especially for the queries whose whole
+   purpose is to come back empty. **Nothing is a finding; an error pretending to
+   be nothing is a lie you are about to hand to the next session.**
+
 15. **When the state file says something has NEVER happened, go and look in the
    place that would record it if it had.** "No customer has reviewed yet", "no
    refund has ever been processed", "nothing has been sold", "that job has never
