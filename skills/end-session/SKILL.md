@@ -229,6 +229,30 @@ state file:
    and confirm the new text is there and the old text is gone. **One line of
    output saying "changed" is not evidence. The changed file is.**
 
+14c. **Two ways a deliberate break lies to you, and both look like a pass.**
+   Step 14 says to break it on purpose and watch it go red. That is right, but
+   the watching has two failure modes of its own:
+
+   * **The break lands on the wrong occurrence.** Search-and-replace changes the
+     FIRST match, and the string you chose often appears more than once — in a
+     neighbouring feature, an older copy, a comment. The edit applies, the file
+     really changed, and the check stays green because you broke something it
+     was never watching. Distinct from "matched nothing" (14a) and it fails the
+     same reassuring way. **Confirm the break landed where you meant** — read
+     the changed lines, not just the exit code.
+   * **The break CRASHES the harness instead of failing a check.** An
+     uncaught error aborts the run, so every check after it never executes and
+     no red line prints at all. Depending on how you read the output that looks
+     like a pass, or like an unrelated environment problem. A break that kills
+     the run has told you nothing about the check you were testing. Make the
+     check catch its own failure and report it as red.
+
+   And the mirror image, which is just as costly: **a check that goes red on
+   CORRECT code**. The usual cause is a check matching prose — a comment or
+   documentation that quotes the very thing it forbids. Nobody trusts a check
+   that cries wolf, and the obvious response is to delete it, so the watching
+   stops altogether. Make it read what actually runs, not what surrounds it.
+
 14b. **A verification QUERY that fails looks exactly like one that found
    nothing — and at handoff time you are asking mostly "is anyone waiting?"
    questions, where empty is the answer you half expect.** A wrong column name, a
