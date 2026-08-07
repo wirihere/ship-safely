@@ -117,6 +117,22 @@ state file:
    is running and whose it is — and if two sessions shared the checkout, the
    handoff must say which branch each one owns.
 
+   **And more than one server can hold the same port at once, which corrupts
+   your verification rather than failing it.** The obvious assumption is that a
+   port is taken or free. It is not: several processes can end up listening on
+   one, and requests are answered by whichever — so the same probe gives
+   different answers minutes apart, and a result produced by somebody else's
+   build reads as a fault in yours. It sends you debugging code that is not
+   running. So before you believe any locally-served result: **list every
+   process on that port, read each one's command line to see which working
+   directory it was started from, and start your own on a port nothing else is
+   using.** Two further things this teaches, both learned the expensive way:
+   stopping the wrapper you launched does not necessarily stop the server
+   process it spawned, so check the port again after killing something; and
+   never kill a process by port alone — confirm from its command line that it
+   is yours, because the one you are about to take down may be the other
+   session's.
+
 10. **A freshly deployed system can lie to you for a few minutes.** Caches,
    CDNs and edge networks serve the previous copy while a rollout propagates,
    so a check run straight after deploying can report the old behaviour — or
